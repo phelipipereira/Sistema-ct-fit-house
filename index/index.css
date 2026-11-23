@@ -1,0 +1,386 @@
+:root{
+    font-family: Manrope, sans-serif;
+}
+
+body{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* -----------------------------Header-------------------------------*/
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header.fundo-preto {
+    background-color: #000;
+}
+
+.cabecalho-conteudo{
+    padding-inline: 64px;
+}
+
+#btn-entrar{
+    background-color: #ffffff;
+    color: #01A94A;
+    border-radius:25px;
+    width: 90px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 12px;
+    
+}
+
+#btn-entrar:hover{
+    background-color: #01A94A;
+    color: #FFFFFF;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+#btn-entrar:hover img,
+#btn-entrar:focus-visible img {
+    filter: brightness(0) invert(1);
+}
+
+#btn-cadastrar{
+    background-color: #01A94A;
+    color: #FFFFFF;
+    border-radius:25px;
+    width: 150px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#btn-cadastrar:hover{
+    background-color: #FFFFFF;
+    color: #01A94A;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.nav-link{
+    color: #FFFFFF;
+    font-weight: regular;
+    font-size: 14px;
+}
+
+.nav-link:hover{
+    color: #01A94A;
+}
+
+/* ------------------------------Hero-------------------------------*/
+
+.hero {
+    min-height: 100vh;
+    padding: 100px 6% 48px;
+
+
+    background-color: #000;
+background-image:
+    linear-gradient(to right, transparent 30%, #000 90%),
+    url("../Assets/img/img1.png");
+background-size: 100% 100%, cover;
+background-position: center, center;
+background-repeat: no-repeat;
+    
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hero-conteudo {
+    width: 100%;
+    
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 16px;
+    color: white;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 45px;
+    font-weight: regular;
+    color:#FFFFFF
+}
+
+#destaque-hero{
+    color: #01AA4B;
+    width: 254px;
+    height: 405px;
+    align-items: left; 
+}
+
+ #btn-hero{
+    text-decoration: none;
+    background-image: linear-gradient(90deg, #013F1C 30%, #01A94A 100%); 
+    border: none;
+    border-radius: 25px;
+    color: #FFFFFF;
+    width: 260px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 20px;   
+}
+
+#btn-hero:hover{
+    background-color: #FFFFFF;
+    
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.03);
+}
+
+#btn-hero2{
+    text-decoration: none;
+    background-image: white; 
+    border: none;
+    border-radius: 25px;
+    color: #013F1C ;
+    width: 240px;
+    height: 40px;
+    font-weight: regular;
+    font-size: 16px;   
+}
+
+#btn-hero2:hover{
+    background-color: #FFFFFF;
+    
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.03);
+}
+
+/* ------------------------------Seção 2-------------------------------*/
+
+.secao2{
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+}
+
+.secao2-conteudo{
+    padding: 80px 6% 48px;
+}
+
+.visual-secao2{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    align-items: center;
+    gap: 32px;
+    margin-top: 60px;
+}
+
+.composicao-secao2{
+    position: relative;
+    isolation: isolate;
+}
+
+#treino-secao2 {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 90%;
+    height: auto;
+    margin-inline: auto;
+}
+
+#elipse-secao2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transform: translateY(40%);
+}
+.titulo-secao2{
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.titulo-secao2 h2{
+    color: #01A94A;
+    font-size: 25px;
+    font-weight: regular;
+}
+
+.titulo-secao2 h1{
+    color: #FFFFFF;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.titulo-secao2 span{
+    color: #01A94A;
+}
+
+.titulo-secao2 h3{
+    color: #ffffff7a;
+    font-size: 20px;
+    font-weight: regular;
+}
+
+.grid-secao2{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.card-secao2{
+    background-color: #0D0D0D;
+    border: 1px solid #01A94A;
+    border-radius: 25px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 15px;
+}
+
+.card-secao2 h1{
+    font-size: 20px;
+    color:#ffffffc9
+}
+
+.card-secao2 p{
+    font-size: 15px;
+    color:#ffffff7a;
+}
+
+.botoes{
+    margin-top: 40px;  
+}
+
+#btn1-secao2{
+    text-decoration: none;
+    background-image: linear-gradient(90deg, #013F1C 30%, #01A94A 100%); 
+    border: none;
+    border-radius: 25px;
+    color: #FFFFFF;
+    width: 360px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 20px;  
+}
+
+#btn1-secao2:hover{ 
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.03);
+}
+
+#btn2-secao2{
+    font-size: 20px;
+    color: #01A94A;  
+}
+
+#btn2-secao2:hover{
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.03);
+}
+
+#btn2-secao2:hover img,
+#btn2-secao2:focus-visible img {
+    filter: brightness(0) invert(1);
+}
+
+/*--------------------------Seção 3-------------------------*/
+
+.secao3{
+    padding: 80px 6% 48px;
+    
+}
+
+
+.titulo-secao3{
+    align-content: center;
+    justify-content: center;
+
+
+}
+
+.titulo-secao3 h2{
+    align-items: center;
+    font-size: 20px;
+    color: #01A94A;
+    font-weight: regular;
+    
+}
+
+.titulo-secao3 h1{
+     color: #000;
+    font-weight: bold;
+    font-size: 40px ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------Footer-------------------------------*/
+
+footer{
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px 100px;
+    margin-top: auto;
+}
+
+
+ .footer-conteudo {
+    display: flex;
+    align-items: flex-start;
+    gap: 200px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.footer-links h3 {
+    border-bottom: 2px solid #01A94A;
+    padding-bottom: 8px;
+    padding-right: 216px;
+}
+
+.footer-links a:hover {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.footer-links a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
