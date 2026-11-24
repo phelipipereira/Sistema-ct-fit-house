@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap");
+
+:root{
+    font-family: Manrope, sans-serif;
+}
+
+body{
+    font-family: "Manrope", sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* -----------------------------Header-------------------------------*/
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header.fundo-preto {
+    background-color: #000;
+}
+
+.cabecalho-conteudo{
+    padding-inline: 64px;
+}
+
+#btn-entrar{
+    background-color: #ffffff;
+    color: #01A94A;
+    border-radius:25px;
+    width: 90px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 12px;
+    
+}
+
+#btn-entrar:hover{
+    background-color: #01A94A;
+    color: #FFFFFF;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+#btn-entrar:hover img,
+#btn-entrar:focus-visible img {
+    filter: brightness(0) invert(1);
+}
+
+#btn-cadastrar{
+    background-color: #01A94A;
+    color: #FFFFFF;
+    border-radius:25px;
+    width: 150px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#btn-cadastrar:hover{
+    background-color: #FFFFFF;
+    color: #01A94A;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.nav-link{
+    color: #FFFFFF;
+    font-weight: regular;
+    font-size: 14px;
+}
+
+.nav-link:hover{
+    color: #01A94A;
+}
+
+/* -----------------------------Hero-------------------------------*/
+
+.hero {
+    min-height: 420px;
+    padding: 130px 4.4% 40px;
+    position: relative;
+    overflow: hidden;
+    background-color: #00431D;
+}
+
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 55%;
+    background: url("../Assets/img/img-hero-quemsomos.jpg") right bottom / cover no-repeat;
+
+   
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 45%);
+            mask-image: linear-gradient(to right, transparent 0%, #000 45%);
+}
+
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        #00431D 0%,
+        #00431D 30%,
+        rgba(1, 169, 74, 0.85) 50%,
+        rgba(1, 169, 74, 0.25) 65%,
+        rgba(1, 169, 74, 0) 80%
+    );
+    pointer-events: none;
+}
+
+
+.hero-conteudo {
+    position: relative;
+    z-index: 1;
+    color: white;
+    max-width: 701px;
+}
+
+.hero-conteudo h1 {
+    font-size: clamp(30px, 3.125vw, 45px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 16px;
+}
+
+.hero-conteudo h1 span {
+    color: #8CF5A8;
+    white-space: nowrap;
+}
+
+.hero-conteudo p {
+    font-size: clamp(12px, 1vw, 14px);
+    line-height: 1.4;
+    max-width: 480px;
+    margin: 0;
+}
