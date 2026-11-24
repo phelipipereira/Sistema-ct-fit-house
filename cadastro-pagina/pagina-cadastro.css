@@ -1,0 +1,240 @@
+/* -----------------------------Header-------------------------------*/
+
+:root {
+    --altura-cabecalho: 80px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--altura-cabecalho);
+    box-sizing: border-box;
+    z-index: 10;
+    background-color: #000;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.cabecalho-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: 16px;
+    padding-inline: clamp(16px, 4vw, 64px);
+}
+
+.cabecalho-conteudo .navbar-brand img {
+    display: block;
+}
+
+.menu-principal {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 2vw, 20px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-link {
+    color: #FFFFFF;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #01A94A;
+}
+
+.menu-principal .nav-link.active {
+    color: #01A94A;
+    text-decoration: underline;
+    text-decoration-color: #01A94A;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}
+
+
+
+/*----------------------------------Pagina----------------------------------------------------------*/
+
+body {
+    margin: 0;
+    background-color: #07120e;
+    color: #f6f8f7;
+    font-family: Manrope, system-ui, sans-serif;
+    line-height: 1.4;
+}
+
+.pagina-cadastro {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: minmax(0, 368px) minmax(0, 640px);
+    justify-content: center;
+    align-items: center;
+    gap: clamp(32px, 8vw, 112px);
+    padding: clamp(24px, 4vh, 64px) clamp(24px, 4vw, 64px);
+    padding-top: calc(var(--altura-cabecalho) + 16px);
+    background:
+        radial-gradient(ellipse at bottom left, #72ad3270, transparent 62%),
+        linear-gradient(125deg, #030a04bc, #020809e8),
+        url("../Assets/img/img5.png") center 68% / cover no-repeat;
+}
+
+.pagina-cadastro,
+.pagina-cadastro * {
+    box-sizing: border-box;
+}
+
+.cadastro-cartao {
+    min-width: 0;
+    padding: 20px clamp(16px, 3.5vw, 40px);
+    border-radius: 16px;
+    background-color: #030605dd;
+    box-shadow: 4px 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cadastro-titulo {
+    text-align: center;
+    margin: 0 0 16px;
+    font-size: 25px;
+    font-weight: 650;
+}
+
+.cadastro-formulario {
+    display: grid;
+    gap: 12.8px;
+}
+
+.cadastro-campo {
+    display: grid;
+    gap: 5.6px;
+}
+
+.cadastro-campo label,
+.cadastro-nascimento legend {
+    font-size: 14px;
+}
+
+.cadastro-formulario input {
+    width: 100%;
+    min-width: 0;
+    min-height: 32px;
+    padding: 4px 10.4px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: #e4e7e5;
+    color: #121714;
+    font: inherit;
+}
+
+.cadastro-formulario input::placeholder {
+    color: #545d58;
+}
+
+.cadastro-formulario input:focus-visible {
+    outline: 2px solid #01A94A;
+    outline-offset: 3px;
+}
+
+.cadastro-nascimento {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.cadastro-nascimento legend {
+    margin-bottom: 5.6px;
+    padding: 0;
+}
+
+.cadastro-data {
+    display: grid;
+    grid-template-columns: minmax(0, 48px) minmax(0, 48px) minmax(0, 72px);
+    gap: 8px;
+}
+
+.cadastro-data input {
+    padding-inline: 3.2px;
+    text-align: center;
+}
+
+.visualmente-oculto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.cadastro-botao {
+    justify-self: center;
+    min-height: 32px;
+    padding: 7.2px 21.6px;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(100deg, #007a40, #06402a);
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.cadastro-botao:hover{
+    transition: 0.3s;
+    transform: scale(1.05);
+    color: #007a40;
+    background: #FFFFFF;
+}
+
+
+.cadastro-rodape {
+    margin: 16px 0 0;
+    font-size: 14px;
+}
+
+.cadastro-login {
+    margin-inline-start: 4.8px;
+    color: #01A94A;
+}
+
+.cadastro-logo {
+    display: block;
+    justify-self: center;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 736px) {
+    .cabecalho-conteudo .navbar-brand img {
+        width: 80px;
+        height: auto;
+    }
+
+    .menu-principal .nav-link {
+        font-size: 14px;
+    }
+
+    .pagina-cadastro {
+        grid-template-columns: minmax(0, 368px);
+        padding-inline: 16px;
+        padding-bottom: 24px;
+    }
+
+    .cadastro-logo {
+        display: none;
+    }
+
+    .cadastro-formulario input,
+    .cadastro-botao {
+        min-height: 44px;
+    }
+}

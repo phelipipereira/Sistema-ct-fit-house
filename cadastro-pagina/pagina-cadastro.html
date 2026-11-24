@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | CT Fit House</title>
+    <link rel="stylesheet" href="pagina-cadastro.css">
+    <script src="/cadastro-pagina/pagina cadastro.js" defer></script>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="cabecalho-conteudo" aria-label="Menu principal">
+            <a class="navbar-brand" href="../index/index.html">
+                <img src="../Assets/img/Logo1.png" alt="CT Fit House" width="109" height="36">
+            </a>
+
+            <ul class="menu-principal">
+                <li><a class="nav-link active" href="../index/index.html">Início</a></li>
+                <li><a class="nav-link" href="#">Sobre Nós</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="pagina-cadastro">
+        <section class="cadastro-cartao" aria-labelledby="titulo-cadastro">
+            <h1 class="cadastro-titulo" id="titulo-cadastro">Cadastro</h1>
+
+            <form class="cadastro-formulario" method="post">
+                <div class="cadastro-campo">
+                    <label for="nome">Nome</label>
+                    <input id="nome" name="nome" type="text" autocomplete="name" maxlength="100" required>
+                </div>
+
+                <div class="cadastro-campo">
+                    <label for="email">E-mail</label>
+                    <input id="email" name="email" type="email" autocomplete="email" maxlength="100" required>
+                </div>
+
+                <div class="cadastro-campo">
+                    <label for="cpf">CPF</label>
+                    <input id="cpf" name="cpf" type="text" inputmode="numeric" pattern="[0-9]{11}"
+                           maxlength="11" placeholder="Somente números" required>
+                </div>
+
+                <fieldset class="cadastro-nascimento">
+                    <legend>Data de nascimento</legend>
+
+                    <div class="cadastro-data">
+                        <label class="visualmente-oculto" for="dia">Dia</label>
+                        <input id="dia" name="dia" type="text" inputmode="numeric" autocomplete="bday-day"
+                               pattern="0?[1-9]|[12][0-9]|3[01]" maxlength="2" placeholder="DD" required>
+
+                        <label class="visualmente-oculto" for="mes">Mês</label>
+                        <input id="mes" name="mes" type="text" inputmode="numeric" autocomplete="bday-month"
+                               pattern="0?[1-9]|1[0-2]" maxlength="2" placeholder="MM" required>
+
+                        <label class="visualmente-oculto" for="ano">Ano</label>
+                        <input id="ano" name="ano" type="text" inputmode="numeric" autocomplete="bday-year"
+                               pattern="[0-9]{4}" maxlength="4" placeholder="AAAA" required>
+                    </div>
+                </fieldset>
+
+                <div class="cadastro-campo">
+                    <label for="senha">Senha</label>
+                    <input id="senha" name="senha" type="password" autocomplete="new-password" required>
+                </div>
+
+                <div class="cadastro-campo">
+                    <label for="confirmacao-senha">Confirme a senha</label>
+                    <input id="confirmacao-senha" name="confirmacao_senha" type="password" autocomplete="new-password" required>
+                </div>
+
+                <!-- O botão será habilitado quando houver um destino para o formulário. -->
+                <button class="cadastro-botao" type="submit" >Cadastrar-se</button>
+            </form>
+
+            <p class="cadastro-rodape">Já possui uma conta? <a class="cadastro-login">Login</a></p>
+        </section>
+
+        <img class="cadastro-logo" src="../Assets/img/Logo2.png" alt="" width="395" height="197">
+    </main>
+</body>
+</html>
