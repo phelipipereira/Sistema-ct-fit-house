@@ -74,11 +74,19 @@ body{
 .nav-link{
     color: #FFFFFF;
     font-weight: regular;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .nav-link:hover{
     color: #01A94A;
+}
+
+.menu-pricipal .nav-link.active {
+    color: #01A94A;
+    text-decoration: underline;
+    text-decoration-color: #01A94A;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
 }
 
 /* ------------------------------Hero-------------------------------*/
@@ -302,24 +310,20 @@ background-repeat: no-repeat;
 /*--------------------------Seção 3-------------------------*/
 
 .secao3{
-    padding: 80px 6% 48px;
-    
+    padding: 50px 6% 48px;
+    background-color: #DDDDDD;   
 }
 
 
-.titulo-secao3{
-    align-content: center;
-    justify-content: center;
-
-
+.titulo-secao3{ 
+    text-align: center;
 }
 
 .titulo-secao3 h2{
     align-items: center;
     font-size: 20px;
     color: #01A94A;
-    font-weight: regular;
-    
+    font-weight: regular;  
 }
 
 .titulo-secao3 h1{
@@ -328,16 +332,281 @@ background-repeat: no-repeat;
     font-size: 40px ;
 }
 
+.titulo-secao3 span{
+    color:#013F1C;
+}
+
+.titulo-secao3 h3{
+    font-size: 25px;
+    font-weight: regular;
+    color: #707070;
+}
+
+.nav-link.botao-secao3 {
+    color: #000;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.nav-link.botao-secao3.active {
+    color: #01A94A;
+}
+
+.grid-secao3{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.card-secao3{
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 4px 2px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 0px;
+}
 
 
+.card-secao3:hover{
+    transform: scale(1.01);
+    transition: 0.5s;
+    background-image: linear-gradient(50deg, #013F1C 30%, #01A94A 60%); 
+}
 
+.preco{
+    font-size: 45px;
+    color: #01AA4B;
+}
 
+.titulo-card{
+    color: #013F1C;
+    font-size: 40px;
+    font-weight: bold;
+}
 
+.checklist-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 8px 10px;
+}
 
+.checklist-card > * {
+    margin: 0;
+}
 
+.checklist-card p{
+    font-size: 15px;
+    font-weight: bold;
+}
 
+.card-secao3 h2{
+    font-size: 25px;
+    font-weight: bold;
+}
 
+.card-secao3 p{
+    font-size: 20px;
+}
 
+.linha-card{
+    width: 100%;
+    border: 2;
+    border-top: 1px solid #00000028;
+    margin: 3px 0;
+    opacity: 100;
+} 
+
+.card-secao3:hover, .card-secao3:hover .titulo-card{
+    color: #ffffff;
+}
+
+.card-secao3:hover .checklist-card img {
+    filter: brightness(0) invert(1);
+}
+
+.card-secao3:hover .linha-card {
+    border-top-color: #fff;
+}
+
+/*-----------------------Seção 4-----------------------------*/
+
+.secao4{
+    background-image: linear-gradient(0deg, #000000 30%, #013F1C 70%);
+}
+
+.foto-galeria {
+    margin-top: 20px;
+    width: max(260px, 22vw);
+    aspect-ratio: 1.15;
+    object-fit: cover;
+}
+
+.galeria-trilho {
+    width: max-content;
+    animation: rolar-fotos 24s linear infinite;
+}
+
+@keyframes rolar-fotos {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.secao4-conteudo{
+    padding: 20px 6% 48px;
+}
+
+.titulos-secao4 h2{
+    color: #01A94A;
+    font-size: 25px;
+}
+
+.titulos-secao4 h1{
+    color:#fff;
+    font-size: 40px;
+}
+
+.titulos-secao4 p{
+    color: #fff;
+    font-size: 20px;
+}
+
+.titulos-secao4 span{
+    color: #01A94A;
+}
+
+#btn1-secao4{
+    margin-top: 15px;
+    text-decoration: none;
+    background-color: #DDDDDD;
+    border: none;
+    border-radius: 25px;
+    color: #013F1C;
+    width: 260px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 20px;  
+}
+
+#btn1-secao4:hover{ 
+    color: #ffffff;
+    background-image: linear-gradient(90deg, #013F1C 30%, #01A94A 100%);
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.03);
+}
+#btn1-secao4:hover img,
+#btn1-secao4:focus-visible img {
+    filter: brightness(0) invert(1);
+}
+
+/*------------------------------Seção 5-----------------------------------------------*/
+
+.secao5{
+     background-image: linear-gradient(0deg, #01A94A 20%, #000000 80%);
+}
+
+.secao5-conteudo{
+    justify-content: center;
+    align-items: center;
+}
+
+.titulos-secao5{
+    margin-top: 80px;
+    text-align: center;
+}
+
+.titulos-secao5 h2{
+    color: #01A94A;
+    font-size: 25px;
+}
+
+.titulos-secao5 h1{
+    color:#fff;
+    font-size: 40px;
+}
+
+.titulos-secao5 p{
+    color: #767171;
+    font-size: 20px;
+}
+
+.grid-secao5 {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 200px auto 200px auto 200px auto 200px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.card-secao5{
+    padding: 30px;
+    background-color: #E0FFE5;
+    border-radius: 50px;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    box-shadow: 4px 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-secao5:hover{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.03);
+
+}
+
+.card-secao5 h1{
+    color:#01A94A;
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.card-secao5 h2{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.card-secao5 p{
+    font-weight: bold;
+    color: #7070709c;
+    font-size: 10px;
+}
+
+#btn1-secao5{
+    font-weight: bold;
+    display: flex;
+    width: 360px;
+    margin-inline: auto;
+    align-items: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    text-decoration: none;
+    background-color: #fffefe;
+    border: none;
+    border-radius: 25px;
+    color: #013F1C;
+    height: 60px;
+    font-size: 20px;
+    box-shadow: 4px 2px 8px 0 rgba(0, 0, 0, 0.2);  
+}
+
+#btn1-secao5:hover{ 
+    color: #ffffff;
+    background-image: linear-gradient(90deg, #013F1C 30%, #01A94A 100%);
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.03);
+}
+#btn1-secao5:hover img,
+#btn1-secao5:focus-visible img {
+    filter: brightness(0) invert(1);
+}
 
 
 /* ------------------------------Footer-------------------------------*/
