@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do lead | CT Fit House</title>
+    <link rel="stylesheet" href="painel-lead.css">
+    <script src="painel-lead.js" defer></script>
+
+</head>
+<body>
+    <header class="painel-lateral">
+        <div class="painel-marca">
+            <a href="../index/index.html">
+                <img src="../Assets/img/Logo2.png" alt="CT Fit House" width="395" height="197">
+            </a>
+            <p>Área autenticada</p>
+        </div>
+
+        <nav aria-label="Navegação do painel">
+            <div class="painel-navegacao" role="tablist" aria-label="Seções do painel" aria-orientation="vertical">
+                <button id="aba-inscricoes" class="painel-tab" type="button" role="tab"
+                        aria-selected="true" aria-controls="painel-inscricoes">Minhas inscrições</button>
+                <button id="aba-aulas" class="painel-tab" type="button" role="tab" tabindex="-1"
+                        aria-selected="false" aria-controls="painel-aulas">Minhas aulas</button>
+                <button id="aba-perfil" class="painel-tab" type="button" role="tab" tabindex="-1"
+                        aria-selected="false" aria-controls="painel-perfil">Meu perfil</button>
+            </div>
+        </nav>
+
+        <small class="painel-rodape">CT FIT HOUSE © 2026</small>
+    </header>
+
+    <main class="painel">
+        <div class="painel-conteudo">
+            <a class="botao botao-secundario painel-sair" href="../index/index.html">Sair</a>
+
+            <section id="painel-inscricoes" role="tabpanel" aria-labelledby="aba-inscricoes" tabindex="0">
+                <header class="aba-cabecalho">
+                    <p class="chamada">Painel do lead</p>
+                    <h1 id="titulo-inscricoes" tabindex="-1">Minhas inscrições</h1>
+                    <p id="subtitulo-inscricoes" class="texto-suave"></p>
+                </header>
+
+                <p class="mensagem" id="mensagem-inscricao" role="status"></p>
+
+                <div id="sem-inscricao" class="pilha">
+                    <div class="cartao cartao-destaque">
+                        <p class="chamada">Sua jornada</p>
+                        <h2 class="titulo-aviso">Você ainda não possui uma aula experimental agendada.</h2>
+                        <p class="texto-suave texto-pequeno">Escolha um horário para começar no CT Fit House.</p>
+                    </div>
+
+                    <button class="botao botao-primario" id="agendar-aula" type="button"
+                            aria-controls="horarios-disponiveis">Agendar aula experimental</button>
+
+                    <section id="horarios-disponiveis" class="secao-aulas" aria-labelledby="titulo-horarios" hidden>
+                        <header class="secao-cabecalho">
+                            <h2 id="titulo-horarios" tabindex="-1">Aulas disponíveis</h2>
+                            <p class="texto-suave texto-pequeno">Horários ilustrativos para o protótipo</p>
+                        </header>
+                        <ul class="lista-aulas" id="lista-horarios"></ul>
+                        <p class="cartao texto-suave" id="sem-horarios" hidden>Nenhum horário disponível.</p>
+                    </section>
+                </div>
+
+                <div id="com-inscricao" class="pilha" hidden>
+                    <div class="cartao cartao-destaque">
+                        <p class="chamada">Inscrição ativa</p>
+                        <h2 class="titulo-aviso">Sua aula experimental está agendada.</h2>
+                        <p class="texto-suave texto-pequeno">Consulte os detalhes do horário escolhido.</p>
+                    </div>
+
+                    <article class="cartao cartao-claro">
+                        <header class="detalhes-cabecalho">
+                            <div>
+                                <p class="chamada">Aula experimental</p>
+                                <h2>Sua próxima aula</h2>
+                            </div>
+                            <span class="selo selo-status" id="inscricao-status"></span>
+                        </header>
+                        <dl class="detalhes-grade">
+                            <div>
+                                <dt>Data</dt>
+                                <dd id="inscricao-data"></dd>
+                            </div>
+                            <div>
+                                <dt>Horário</dt>
+                                <dd id="inscricao-horario"></dd>
+                            </div>
+                            <div>
+                                <dt>Professor</dt>
+                                <dd id="inscricao-professor"></dd>
+                            </div>
+                            <div>
+                                <dt>Local</dt>
+                                <dd id="inscricao-local"></dd>
+                            </div>
+                        </dl>
+                        <p class="texto-suave texto-pequeno">Dados de exemplo para o protótipo.</p>
+                    </article>
+
+                    <div>
+                        <div class="grupo-acoes">
+                            <button class="botao botao-primario" type="button" disabled>Confirmar presença</button>
+                            <button class="botao botao-secundario" id="cancelar-inscricao" type="button">Cancelar inscrição</button>
+                        </div>
+                        <p class="texto-suave texto-pequeno nota-acoes">A confirmação de presença depende de uma solicitação.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="painel-aulas" role="tabpanel" aria-labelledby="aba-aulas" tabindex="0" hidden>
+                <header class="aba-cabecalho">
+                    <p class="chamada">Painel do lead</p>
+                    <h1>Minhas aulas</h1>
+                    <p class="texto-suave">Acompanhe as aulas registradas no seu perfil.</p>
+                </header>
+                <ul class="lista-aulas" id="lista-aulas"></ul>
+                <p class="cartao cartao-destaque" id="sem-aulas" hidden>Nenhuma aula para exibir</p>
+            </section>
+
+            <section id="painel-perfil" role="tabpanel" aria-labelledby="aba-perfil" tabindex="0" hidden>
+                <header class="aba-cabecalho">
+                    <p class="chamada">Painel do lead</p>
+                    <h1>Meu perfil</h1>
+                    <p class="texto-suave">Consulte e mantenha seus dados pessoais atualizados.</p>
+                </header>
+
+                <div class="cartao perfil-identidade">
+                    <span class="perfil-avatar" id="perfil-iniciais" aria-hidden="true"></span>
+                    <div class="perfil-nome">
+                        <h2 id="perfil-nome"></h2>
+                        <p class="texto-suave texto-pequeno" id="perfil-tipo"></p>
+                    </div>
+                    <span class="selo" id="perfil-status"></span>
+                </div>
+
+                <form class="perfil-formulario" id="perfil-formulario" method="post">
+                    <section class="cartao cartao-claro" aria-labelledby="titulo-dados-pessoais">
+                        <header class="perfil-cabecalho">
+                            <h2 class="chamada" id="titulo-dados-pessoais">Dados pessoais</h2>
+                            <p class="texto-suave texto-pequeno">Atualize suas informações de contato. Seu CPF não pode ser alterado.</p>
+                        </header>
+
+                        <div class="perfil-campos">
+                            <div class="perfil-campo">
+                                <label for="nome">Nome completo</label>
+                                <input id="nome" name="nome" type="text" autocomplete="name" maxlength="100" required>
+                            </div>
+
+                            <div class="perfil-campo">
+                                <label for="cpf">CPF</label>
+                                <div class="campo-bloqueado">
+                                    <input id="cpf" type="text" readonly aria-describedby="cpf-bloqueado">
+                                    <span id="cpf-bloqueado">Bloqueado</span>
+                                </div>
+                            </div>
+
+                            <div class="perfil-campo">
+                                <label for="email">E-mail</label>
+                                <input id="email" name="email" type="email" autocomplete="email" maxlength="100" required>
+                            </div>
+
+                            <div class="perfil-campo">
+                                <label for="data-nascimento">Data de nascimento</label>
+                                <input id="data-nascimento" name="data_nascimento" type="date" autocomplete="bday" required>
+                            </div>
+                        </div>
+
+                        <p class="texto-suave texto-pequeno perfil-nota">Informações exibidas como exemplo no protótipo.</p>
+                    </section>
+
+                    <section class="cartao cartao-compacto" aria-labelledby="titulo-seguranca">
+                        <h2 class="chamada" id="titulo-seguranca">Segurança da conta</h2>
+                        <p class="texto-suave texto-pequeno">A senha pode ser atualizada em um fluxo de alteração separado.</p>
+                    </section>
+
+                    <p class="mensagem" id="mensagem-perfil" role="status"></p>
+                    <div class="grupo-acoes perfil-acoes">
+                        <button class="botao botao-secundario" id="descartar-perfil" type="button">Descartar alterações</button>
+                        <button class="botao botao-primario" type="submit">Salvar alterações</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <dialog class="modal" id="modal-confirmar" aria-labelledby="titulo-confirmar" aria-describedby="descricao-confirmar">
+        <p class="chamada">Confirmação de agendamento</p>
+        <h2 id="titulo-confirmar">Confirme sua aula experimental</h2>
+        <p class="texto-suave texto-pequeno" id="descricao-confirmar">Confira as informações antes de concluir sua inscrição.</p>
+
+        <div class="cartao cartao-claro resumo-aula">
+            <p class="chamada">Data e horário</p>
+            <p class="resumo-data" id="confirmar-quando"></p>
+            <dl class="resumo-grade">
+                <div>
+                    <dt>Professor</dt>
+                    <dd id="confirmar-professor"></dd>
+                </div>
+                <div>
+                    <dt>Vagas</dt>
+                    <dd id="confirmar-vagas"></dd>
+                </div>
+            </dl>
+        </div>
+
+        <div class="cartao cartao-compacto modal-aviso">
+            <p class="chamada">Importante</p>
+            <p class="texto-pequeno">Você pode manter apenas uma inscrição ativa por vez.</p>
+        </div>
+
+        <div class="grupo-acoes modal-acoes">
+            <button class="botao botao-secundario" id="voltar-horarios" type="button" autofocus>Voltar</button>
+            <button class="botao botao-primario" id="confirmar-inscricao" type="button">Confirmar inscrição</button>
+        </div>
+    </dialog>
+
+    <dialog class="modal" id="modal-sucesso" aria-labelledby="titulo-sucesso" aria-describedby="descricao-sucesso">
+        <header class="modal-sucesso-cabecalho">
+            <span class="icone-sucesso" aria-hidden="true">✓</span>
+            <h2 id="titulo-sucesso">Inscrição realizada!</h2>
+            <p class="texto-suave texto-pequeno" id="descricao-sucesso">Sua aula experimental foi agendada com sucesso.</p>
+        </header>
+
+        <div class="cartao cartao-claro resumo-aula">
+            <p class="chamada">Sua aula</p>
+            <p class="resumo-data" id="sucesso-quando"></p>
+            <p class="texto-suave texto-pequeno" id="sucesso-professor"></p>
+            <p class="texto-verde texto-pequeno" id="sucesso-status"></p>
+        </div>
+
+        <button class="botao botao-primario botao-largo" id="ver-inscricao" type="button" autofocus>Ir para Minhas inscrições</button>
+    </dialog>
+
+    <template id="modelo-horario">
+        <li class="cartao cartao-claro cartao-destaque linha-aula">
+            <div>
+                <p class="linha-titulo" data-campo="data"></p>
+                <p class="texto-suave texto-pequeno" data-campo="horario"></p>
+            </div>
+            <div>
+                <p class="texto-suave" data-campo="professor"></p>
+                <p class="texto-verde texto-pequeno" data-campo="vagas"></p>
+            </div>
+            <button class="botao botao-primario" type="button">Inscrever-se</button>
+        </li>
+    </template>
+
+    <template id="modelo-aula">
+        <li class="cartao cartao-claro cartao-destaque linha-aula">
+            <div>
+                <p class="linha-titulo" data-campo="titulo"></p>
+                <p class="texto-suave texto-pequeno" data-campo="quando"></p>
+            </div>
+            <div>
+                <p class="texto-suave" data-campo="professor"></p>
+                <p class="texto-verde texto-pequeno" data-campo="local"></p>
+            </div>
+            <span class="selo selo-status" data-campo="status"></span>
+        </li>
+    </template>
+</body>
+</html>
