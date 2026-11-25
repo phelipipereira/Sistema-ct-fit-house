@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css"
+        integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="login.css">
+
+    <script src="login.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid cabecalho-conteudo">
+
+                <a class="navbar-brand" href="#">
+                    <img src="/Assets/img/Logo1.png" alt="CT FitHouse Logo" width="109" height="36" class="d-inline-block align-text-top">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto menu-principal">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../quem_somos/quem_somos.html">Sobre Nós</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/index.html">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Planos</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <main class="login">
+        <div class="login-card">
+
+            <div class="login-avatar">
+                <img src="../Assets/icons/login/icone-login.png" alt="Ícone de Login">
+            </div>
+
+            <h1>LOGIN</h1>
+
+            <form class="login-form" action="#" method="post">
+
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" name="cpf" inputmode="numeric" maxlength="14" autocomplete="username" required>
+
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" autocomplete="current-password" required>
+
+                <button type="submit" id="btn-login">Entrar</button>
+
+            </form>
+
+            <p class="login-cadastro">
+                Não possui uma conta?
+                <a href="../cadastro-pagina/pagina-cadastro.html">Cadastrar-se</a>
+            </p>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-conteudo">
+
+            <div class="footer-logo">
+                <img src="/Assets/img/Logo2.png" alt="CT Fit House Logo" width="395" height="197">
+                <p>&copy; 2023 CT Fit House. Todos os direitos reservados.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Navegação</h3>
+                <a href="../index/index.html">Início</a>
+                <a href="../quem_somos/quem_somos.html">Sobre o CT</a>
+                <a href="#">Planos</a>
+
+                <h3>Informações</h3>
+                <p>R. Antônio Gonçalves Ribeiro, 779 - Rodolfo Gonçalves, Cordeiro - RJ, 28540-000</p>
+
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/ct.fithouse/" target="_blank">
+                        <img src="../Assets/icons/footer/Icon-Instagram.png" alt="Instagram" width="27" height="27">
+                    </a>
+                    <a href="#">
+                        <img src="../Assets/icons/footer/Icon-Whatsapp.png" alt="Icon-Whatsapp" width="24" height="24">
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>
