@@ -9,9 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $cpf = $_POST['cpf'] ?? '';
-$senha = $_POST['senha'] ?? '';
+$senhaDigitada = $_POST['senha'] ?? '';
 
-if (!is_string($cpf) || !is_string($senha) || $senha === '') {
+if (!is_string($cpf) || !is_string($senhaDigitada) || $senhaDigitada === '') {
     http_response_code(400);
     exit('Preencha o CPF e a senha.');
 }
@@ -39,7 +39,20 @@ try {
     exit('Não foi possível entrar agora. Tente novamente.');
 }
 
-if ($usuario === false || !password_verify($senha, $usuario['senha_hash'])) {
+$resultado = 'Conta encontrada e senha conferiu';
+
+if ($usuario === false) {
+    $resultado = 'A consulta do login nao encontrou a conta';
+} elseif (!password_verify($senha, $usuario['senha_hash'])) {
+    $resultado = 'Conta encontrada, mas a senha nao conferiu';
+}
+
+file_put_contents(
+    __DIR__ . '/diagnostico-login.php',
+    "<?php exit; ?>\n" . $resultado
+);
+
+if ($usuario === false || !password_verify($senhaDigitada, $usuario['senha_hash'])) {
     http_response_code(401);
     exit('CPF ou senha inválidos.');
 }
