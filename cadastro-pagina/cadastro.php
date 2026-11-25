@@ -22,6 +22,7 @@
 
     try {
     require __DIR__ . '/../db.php';
+    $pdo = conectarBanco();
 
     $cadastro = $pdo->prepare(
         "INSERT INTO usuario (cpf, nome, email, data_nascimento, senha_hash, tipo)
