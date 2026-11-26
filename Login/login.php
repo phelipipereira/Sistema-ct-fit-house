@@ -27,9 +27,9 @@ try {
     require __DIR__ . '/../db.php';
 
     $consulta = $pdo->prepare(
-        "SELECT cpf, senha_hash
+        'SELECT cpf, senha_hash, tipo
          FROM usuario
-         WHERE cpf = :cpf AND tipo = 'lead' AND ativo = 1"
+         WHERE cpf = :cpf AND ativo = 1'
     );
 
     $consulta->execute(['cpf' => $cpf]);
@@ -39,26 +39,29 @@ try {
     exit('Não foi possível entrar agora. Tente novamente.');
 }
 
-$resultado = 'Conta encontrada e senha conferiu';
-
-if ($usuario === false) {
-    $resultado = 'A consulta do login nao encontrou a conta';
-} elseif (!password_verify($senha, $usuario['senha_hash'])) {
-    $resultado = 'Conta encontrada, mas a senha nao conferiu';
-}
-
-file_put_contents(
-    __DIR__ . '/diagnostico-login.php',
-    "<?php exit; ?>\n" . $resultado
-);
-
 if ($usuario === false || !password_verify($senhaDigitada, $usuario['senha_hash'])) {
     http_response_code(401);
     exit('CPF ou senha inválidos.');
 }
 
-session_regenerate_id(true);
-$_SESSION['cpf_lead'] = $usuario['cpf'];
+$tipo = $usuario['tipo'];
 
-header('Location:/../painel-lead/painel-lead.html', true, 303);
+if ($tipo === 'lead') {
+    $destino = '../painel-lead/painel-lead.html';
+} elseif (in_array($tipo, ['host', 'professor'], true)) {
+    $destino = '../painel-administrativo/painel-adm.html';
+} else {
+    http_response_code(403);
+    exit('Perfil sem acesso ao painel.');
+}
+
+session_regenerate_id(true);
+unset($_SESSION['cpf_lead'], $_SESSION['csrf_adm']);
+$_SESSION['cpf_usuario'] = $usuario['cpf'];
+
+if ($tipo === 'lead') {
+    $_SESSION['cpf_lead'] = $usuario['cpf'];
+}
+
+header('Location: ' . $destino, true, 303);
 exit;
