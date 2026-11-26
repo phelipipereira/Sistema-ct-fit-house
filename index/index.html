@@ -19,36 +19,41 @@
 <body>
 
     <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid cabecalho-conteudo">
 
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="index.html">
                     <img src="/Assets/img/Logo1.png" alt="CT FitHouse Logo" width="109" height="36" class="d-inline-block align-text-top">
                 </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <div class="collapse navbar-collapse" id="menu">
                     <ul class="navbar-nav mx-auto menu-pricipal">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre Nós</a>
+                            <a class="nav-link" href="../quem_somos/quem_somos.html">Sobre Nós</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Início</a>
+                            <a class="nav-link active" href="index.html">Início</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#Planos">Planos</a>
                         </li>
                     </ul>
+
+                    <div class="d-flex gap-3 justify-content-center mt-3 mt-lg-0">
+                        <a class="btn d-inline-flex align-items-center justify-content-center gap-2" href="../Login/login.html" id="btn-entrar">
+                            <img src="/Assets/icons/header/icon-perfil.svg" alt="" width="15" height="15">
+                            Entrar
+                        </a>
+                        <a class="btn d-inline-flex align-items-center justify-content-center" href="../cadastro-pagina/pagina-cadastro.html" id="btn-cadastrar">
+                            Quero experimentar
+                        </a>
+                    </div>
                 </div>
 
-                <dir class="d-flex gap-3">
-                    <button class="btn d-inline-flex align-items-center gap-2" id="btn-entrar" type="button">
-                        <img src="/Assets/icons/header/icon-perfil.svg" alt="" width="15" height="15">
-                        Entrar
-                    </button>
-                    <button class="btn " type="button" id="btn-cadastrar">
-                        Quero experimentar
-                    </button>
-                </dir>
             </div>
         </nav>
     </header>
@@ -59,11 +64,11 @@
             
             <h1 id="titulo-hero">Sua evolução começa com um treino feito para <span id="destaque-hero">você.</span></h1>
 
-            <button class="btn d-inline-flex align-items-center justify-content-center gap-2" id="btn-hero" href="#">
+            <button class="btn d-inline-flex align-items-center justify-content-center gap-2" id="btn-hero" href="../cadastro-pagina/pagina-cadastro.html">
                 Dê o primeiro passo
                 <img src="/Assets/icons/Icon-seta-ddireita.svg" alt="" width="20" height="20">
             </button>
-            <button class="btn-hero2" id="btn-hero2" href="#">
+            <button class="btn-hero2" id="btn-hero2" type="button" onclick="document.getElementById('Planos').scrollIntoView({ behavior: 'smooth' })">
                 Conheça nossos planos
                 <img src="/Assets/icons/Icon-seta-baixo.svg" alt="" width="15" height="15">
             </button>
@@ -115,14 +120,14 @@
 
             <div class="botoes gap-2">
 
-                    <button class="btn d-inline-flex align-items-center justify-content-center gap-2" id="btn1-secao2" href="#">
+                    <a class="btn d-inline-flex align-items-center justify-content-center gap-2" id="btn1-secao2" href="../cadastro-pagina/pagina-cadastro.html">
                         Quero minha aula experimental
                         <img src="/Assets/icons/Icon-seta-ddireita.svg" alt="" width="20" height="20">
-                    </button>
-                    <button class="btn d-inline-flex align-items-center justify-content-center gap-2" id="btn2-secao2" href="#">
+                    </a>
+                    <a class="btn d-inline-flex align-items-center justify-content-center gap-2" id="btn2-secao2" href="../quem_somos/quem_somos.html">
                         Conheça o CT Fit House
                         <img src="/Assets/icons/secao2/seta-verde.svg" alt="" width="20" height="20">
-                    </button>
+                    </a>
 
             </div>
 
@@ -360,10 +365,10 @@
                     o Fit House acontecer. Um ambiente preparado para receber você e uma equipe dedicada à sua evolução.</p>
             </div>
 
-            <button class="btn d-inline-flex align-items-center justify-content-center gap-2" id="btn1-secao4" href="#">
+            <a class="btn d-inline-flex align-items-center justify-content-center gap-2" target="_blank" id="btn1-secao4" href="https://www.google.com/maps/place/CT+FIT+HOUSE+-+Treinamento+Personalizado/@-22.0352343,-42.3766912,957m/data=!3m2!1e3!4b1!4m6!3m5!1s0x97e314cb3998f1:0xcbb6ea007d6e7019!8m2!3d-22.0352393!4d-42.3741163!16s%2Fg%2F11v190zgrb?entry=ttu&g_ep=EgoyMDI2MTEyMi4wIKXMDSoASAFQAw%3D%3D">
                 Conheça de perto
                 <img src="/Assets/icons/secao4/seta-ver-escuro.png" alt="" width="20" height="20">
-            </button>   
+            </a>   
         </div>
     </section>
 
@@ -415,10 +420,10 @@
                 </div>
             </div>
 
-            <button  type="button" class="btn align-items-center justify-content-center gap-2" id="btn1-secao5" href="#">
+            <a  type="button" class="btn align-items-center justify-content-center gap-2" id="btn1-secao5" href="../cadastro-pagina/pagina-cadastro.html">
                 Agendar aula experimental
                 <img src="/Assets/icons/secao4/seta-ver-escuro.png" alt="" width="20" height="20">
-            </button> 
+            </a> 
         </div>
     </section>
 
@@ -426,32 +431,32 @@
         <div class="footer-conteudo">
 
             <div class="footer-logo">
-                <img src="/Assets/img/Logo2.png" alt="Facebook" width="395" height="197">
+                <img src="/Assets/img/Logo2.png" alt="CT Fit House Logo" width="395" height="197">
                 <p>&copy; 2023 CT Fit House. Todos os direitos reservados.</p>
             </div>
 
             <div class="footer-links">
                 <h3>Navegação</h3>
-                <a href="#">Início</a>
-                <a href="#">Sobre o CT</a>
-                <a href="#">Planos</a>
+                <a href="../index/index.html">Início</a>
+                <a href="../quem_somos/quem_somos.html">Sobre o CT</a>
+                <a href="../index/index.html#Planos">Planos</a>
 
                 <h3>Informações</h3>
                 <p>R. Antônio Gonçalves Ribeiro, 779 - Rodolfo Gonçalves, Cordeiro - RJ, 28540-000</p>
 
-            <div class="footer-social">
-                <a href="https://www.instagram.com/ctfithouse/" target="_blank">
-                    <img src="/Assets/icons/Icone - Instagram.png" alt="Instagram" width="27" height="27">
-                </a>
-                <a href="#">
-                    <img src="/Assets/icons/Frame.png" alt="Facebook" width="24" height="24">
-                </a>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/ct.fithouse/" target="_blank">
+                        <img src="../Assets/icons/footer/Icon-Instagram.png" alt="Instagram" width="27" height="27">
+                    </a>
+                    <a href="https://wa.me/5522981510371?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es!"
+                       target="_blank">
+                        <img src="../Assets/icons/footer/Icon-Whatsapp.png" alt="Icon-Whatsapp" width="24" height="24">
+                    </a>
+                </div>
+
             </div>
 
-            </div> 
-
-         </div>
-        
+        </div>
     </footer>
     
 </body>

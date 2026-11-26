@@ -432,6 +432,48 @@ dialog select:focus {
 }
 
 
+/* Filtros e professores */
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.filtros input,
+.filtros select {
+    height: 34px;
+    padding: 0 12px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: #000;
+    font-size: 12px;
+    outline: none;
+}
+
+.filtros input {
+    flex: 1;
+    min-width: 180px;
+    max-width: 320px;
+}
+
+.filtros input:focus,
+.filtros select:focus {
+    border-color: var(--verde);
+}
+
+dialog input[readonly] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+tr.inativo td:not(.centro) {
+    opacity: 0.45;
+}
+
+
 /* Aviso rápido */
 
 .toast {

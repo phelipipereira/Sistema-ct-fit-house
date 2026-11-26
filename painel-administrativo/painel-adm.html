@@ -93,9 +93,44 @@
             </div>
         </section>
 
-        <!-- Telas ainda sem design -->
-        <section class="vista" id="vista-em-breve" hidden>
-            <div class="aviso"><p>Esta tela ainda será construída.</p></div>
+        <!-- Inscrições -->
+        <section class="vista" id="vista-inscricoes" hidden>
+            <div class="filtros">
+                <input type="search" id="filtro-busca" placeholder="Buscar aluno" aria-label="Buscar aluno">
+                <select id="filtro-status" aria-label="Filtrar por status">
+                    <option value="">Todos os status</option>
+                    <option value="agendada">Agendada</option>
+                    <option value="confirmada">Confirmada</option>
+                    <option value="cancelada">Cancelada</option>
+                    <option value="presente">Presente</option>
+                    <option value="ausente">Ausente</option>
+                </select>
+            </div>
+            <div class="tabela-caixa">
+                <table>
+                    <thead>
+                        <tr><th>ALUNO</th><th>AULA</th><th>PROFESSOR</th><th>STATUS</th><th class="centro">GERENCIAR</th></tr>
+                    </thead>
+                    <tbody id="tabela-inscricoes"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Professores (somente Host) -->
+        <section class="vista" id="vista-professores" hidden>
+            <div class="tabela-caixa">
+                <table>
+                    <thead>
+                        <tr><th>NOME</th><th>E-MAIL</th><th>CPF</th><th>STATUS</th><th>AULAS FUTURAS</th><th class="centro">GERENCIAR</th></tr>
+                    </thead>
+                    <tbody id="tabela-professores"></tbody>
+                </table>
+            </div>
+            <div class="aviso">
+                <span class="rotulo">SOMENTE HOST</span>
+                <p>Cadastrar, editar e desativar contas de professores.</p>
+                <small>Professor com aulas futuras só pode ser desativado depois que essas aulas forem canceladas.</small>
+            </div>
         </section>
 
     </main>
@@ -143,6 +178,32 @@
                 <button type="button" class="btn-secundario" id="fechar-alunos">Fechar</button>
             </div>
         </div>
+    </dialog>
+
+    <!-- Modal: professor -->
+    <dialog id="modal-professor">
+        <form id="form-professor">
+            <h2 id="titulo-professor">Novo professor</h2>
+
+            <label for="prof-nome">Nome</label>
+            <input type="text" id="prof-nome" required>
+
+            <label for="prof-cpf">CPF</label>
+            <input type="text" id="prof-cpf" inputmode="numeric" maxlength="14" required>
+
+            <label for="prof-email">E-mail</label>
+            <input type="email" id="prof-email" required>
+
+            <label for="prof-senha" id="rotulo-senha">Senha</label>
+            <input type="password" id="prof-senha" autocomplete="new-password">
+
+            <p class="erro-form" id="erro-professor" role="alert"></p>
+
+            <div class="modal-botoes">
+                <button type="button" class="btn-secundario" id="cancelar-professor">Fechar</button>
+                <button type="submit" class="btn-principal">Salvar</button>
+            </div>
+        </form>
     </dialog>
 
     <div id="aviso-toast" class="toast" role="status" aria-live="polite"></div>

@@ -812,7 +812,36 @@ footer {
 }
 
 
+
 /* Responsividade */
+
+body {
+    overflow-x: hidden;
+}
+
+
+/* ---- Telas médias: textos acompanham a largura das colunas ---- */
+
+@media (max-width: 1280px) {
+
+    .professores h3,
+    .equipe h3 {
+        font-size: clamp(22px, 2.74vw, 35px);
+    }
+
+    .professores h4,
+    .equipe h4 {
+        font-size: clamp(15px, 1.56vw, 20px);
+    }
+
+    .professores p,
+    .equipe p {
+        font-size: clamp(12px, 1.17vw, 15px);
+    }
+}
+
+
+/* ---- Footer ---- */
 
 @media (max-width: 1200px) {
 
@@ -829,18 +858,82 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
+
+/* ---- Header (o menu vira "hambúrguer" abaixo de 992px) ---- */
+
+@media (max-width: 991px) {
 
     .cabecalho-conteudo {
         padding-inline: 20px;
     }
 
-    .hero {
-        padding: 120px 5% 40px;
+    /* com o menu aberto o header fica preto, para os links ficarem legíveis */
+    .header:has(.navbar-collapse.show),
+    .header:has(.navbar-collapse.collapsing) {
+        background-color: #000;
     }
+
+    .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .navbar-collapse {
+        padding: 8px 0 18px;
+    }
+
+    .menu-principal {
+        text-align: center;
+    }
+
+    .nav-link {
+        padding: 10px 0;
+    }
+
+    #btn-entrar,
+    #btn-cadastrar {
+        height: 38px;
+        font-size: 13px;
+    }
+}
+
+
+/* ---- Tablet e celular: layout em coluna única ---- */
+
+@media (max-width: 900px) {
+
+    .hero {
+        min-height: 360px;
+        padding: 110px 5% 40px;
+    }
+
+    .hero::before {
+        width: 100%;
+        opacity: 0.35;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .hero::after {
+        background: linear-gradient(to bottom, rgba(0, 67, 29, 0.9), rgba(0, 67, 29, 0.55));
+    }
+
+    .hero-conteudo h1 {
+        font-size: clamp(26px, 7vw, 34px);
+    }
+
+    .hero-conteudo p {
+        font-size: 14px;
+        max-width: none;
+    }
+
+    /* Nossa História */
 
     .nossa-historia {
         padding: 35px 5%;
+    }
+
+    .nossa-historia-conteudo h1 {
+        font-size: 20px;
     }
 
     .nossa-historia-conteudo h2 {
@@ -871,8 +964,19 @@ footer {
         transform: scale(1.1);
     }
 
+    .linha-tempo h4 {
+        font-size: 22px;
+    }
+
+    /* Fundadores */
+
     .fundadores {
-        padding: 35px 5% 0;
+        padding: 35px 5% 40px;
+    }
+
+    .fundadores-conteudo h1,
+    .nosso-time-conteudo h1 {
+        font-size: 20px;
     }
 
     .fundadores-conteudo h2 {
@@ -924,8 +1028,22 @@ footer {
         font-size: 18px;
     }
 
+    .professores p {
+        font-size: 15px;
+        max-width: 360px;
+    }
+
+    /* Nosso Time */
+
     .nosso-time {
-        padding: 35px 5% 0;
+        padding: 35px 5% 40px;
+    }
+
+    .nosso-time::before {
+        width: 520px;
+        height: 520px;
+        left: 75%;
+        top: 40%;
     }
 
     .nosso-time-conteudo h2 {
@@ -957,12 +1075,12 @@ footer {
     }
 
     .equipe-imagens img:first-child {
-        width: 90%;
+        width: 67%;
     }
 
     .equipe-imagens img:last-child {
-        width: 75%;
-        margin-left: -55%;
+        width: 74%;
+        margin-left: -41%;
     }
 
     .profissional2 {
@@ -977,7 +1095,14 @@ footer {
         font-size: 18px;
     }
 
-    /* Filosofia, espaço e CTA */
+    .equipe p,
+    .profissional1 p,
+    .profissional2 p {
+        font-size: 15px;
+        max-width: 360px;
+    }
+
+    /* Filosofia, espaço e chamada final */
 
     .nossa-filosofia,
     .um-sonho,
@@ -1000,12 +1125,21 @@ footer {
         gap: 24px;
     }
 
+    .um-sonho-texto p {
+        max-width: none;
+    }
+
     .venha-fazer-parte-conteudo h2 {
         font-size: 28px;
     }
 
+    .venha-fazer-parte-conteudo p {
+        font-size: 14px;
+    }
+
     .btn-claro {
-        padding: 14px 28px;
+        padding: 14px 24px;
+        font-size: 13px;
     }
 
     /* Footer */
@@ -1027,5 +1161,37 @@ footer {
     .footer-links h3 {
         width: 100%;
         padding-right: 0;
+        font-size: 20px;
+    }
+}
+
+
+/* ---- Celulares pequenos ---- */
+
+@media (max-width: 480px) {
+
+    .nossa-historia-conteudo h2,
+    .nossa-filosofia-conteudo h2,
+    .um-sonho-conteudo h2 {
+        font-size: 22px;
+    }
+
+    .fundadores-conteudo h2,
+    .nosso-time-conteudo h2 {
+        font-size: 26px;
+    }
+
+    .professores h3,
+    .equipe h3 {
+        font-size: 24px;
+    }
+
+    .venha-fazer-parte-conteudo h2 {
+        font-size: 24px;
+    }
+
+    .nosso-time::before {
+        width: 380px;
+        height: 380px;
     }
 }

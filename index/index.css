@@ -653,3 +653,345 @@ footer{
     align-items: center;
     gap: 16px;
 }
+
+/* ------------------------------Responsividade-------------------------------*/
+
+body {
+    overflow-x: hidden;
+}
+
+
+/* ---- Footer ---- */
+
+@media (max-width: 1200px) {
+
+    footer {
+        padding: 20px 5%;
+    }
+
+    .footer-conteudo {
+        gap: 80px;
+    }
+
+    .footer-links h3 {
+        padding-right: 100px;
+    }
+}
+
+
+/* ---- Seção 5: os 4 cards em 2 colunas (as setas somem) ---- */
+
+@media (max-width: 1100px) {
+
+    .secao5-conteudo {
+        padding-inline: 6%;
+    }
+
+    .grid-secao5 {
+        grid-template-columns: repeat(2, 200px);
+        gap: 24px;
+    }
+
+    .grid-secao5 > img {
+        display: none;
+    }
+}
+
+
+/* ---- Header: menu "hambúrguer" abaixo de 992px ---- */
+
+@media (max-width: 991px) {
+
+    .cabecalho-conteudo {
+        padding-inline: 20px;
+    }
+
+    /* com o menu aberto o header fica preto, para os links ficarem legíveis */
+    .header:has(.navbar-collapse.show),
+    .header:has(.navbar-collapse.collapsing) {
+        background-color: #000;
+    }
+
+    .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .navbar-collapse {
+        padding: 8px 0 18px;
+    }
+
+    .menu-pricipal {
+        text-align: center;
+    }
+
+    .nav-link {
+        padding: 10px 0;
+        font-size: 16px;
+    }
+
+    #btn-entrar,
+    #btn-cadastrar {
+        height: 38px;
+        font-size: 13px;
+    }
+}
+
+
+/* ---- Tablet e celular ---- */
+
+@media (max-width: 900px) {
+
+    /* Hero: texto embaixo, por cima da foto escurecida */
+
+    .hero {
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 100px 6% 40px;
+        justify-content: center;
+        align-items: flex-end;
+        background-image:
+            linear-gradient(to top, #000 12%, rgba(0, 0, 0, 0.45) 70%),
+            url("../Assets/img/img1.png");
+        background-position: center, 70% center;
+    }
+
+    .hero-conteudo {
+        max-width: 520px;
+    }
+
+    .hero h1 {
+        font-size: clamp(30px, 8vw, 40px);
+    }
+
+    #btn-hero,
+    #btn-hero2 {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    #btn-hero {
+        font-size: 18px;
+    }
+
+    /* Seção 2 */
+
+    .secao2-conteudo {
+        padding: 60px 6% 40px;
+    }
+
+    .titulo-secao2 h2 {
+        font-size: 16px;
+    }
+
+    .titulo-secao2 h1 {
+        font-size: 28px;
+    }
+
+    .titulo-secao2 h3 {
+        font-size: 16px;
+    }
+
+    .visual-secao2 {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 30px;
+    }
+
+    .composicao-secao2 {
+        margin-bottom: 70px;   
+    }
+
+    #treino-secao2 {
+        width: 80%;
+        max-width: 420px;
+    }
+
+    .card-secao2 h1 {
+        font-size: 18px;
+    }
+
+    .card-secao2 p {
+        font-size: 14px;
+    }
+
+    .botoes {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 24px;
+    }
+
+    #btn1-secao2 {
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+    }
+
+    #btn2-secao2 {
+        font-size: 16px;
+    }
+
+    /* Seção 3 */
+
+    .secao3 {
+        padding: 40px 6%;
+    }
+
+    .titulo-secao3 h2 {
+        font-size: 16px;
+    }
+
+    .titulo-secao3 h1 {
+        font-size: 28px;
+    }
+
+    .titulo-secao3 h3 {
+        font-size: 16px;
+    }
+
+    .nav-link.botao-secao3 {
+        font-size: 22px;
+    }
+
+    .card-secao3 {
+        padding: 24px;
+    }
+
+    .titulo-card {
+        font-size: 32px;
+    }
+
+    .preco {
+        font-size: 38px;
+    }
+
+    .card-secao3 h2 {
+        font-size: 20px;
+    }
+
+    .card-secao3 p {
+        font-size: 16px;
+    }
+
+    .checklist-card p {
+        font-size: 14px;
+    }
+
+    /* Seção 4 */
+
+    .foto-galeria {
+        width: 240px;
+    }
+
+    .secao4-conteudo {
+        padding: 20px 6% 40px;
+    }
+
+    .titulos-secao4 h2 {
+        font-size: 16px;
+    }
+
+    .titulos-secao4 h1 {
+        font-size: 28px;
+    }
+
+    .titulos-secao4 p {
+        font-size: 16px;
+    }
+
+    #btn1-secao4 {
+        font-size: 16px;
+    }
+
+    /* Seção 5 */
+
+    .titulos-secao5 {
+        margin-top: 50px;
+    }
+
+    .titulos-secao5 h2 {
+        font-size: 16px;
+    }
+
+    .titulos-secao5 h1 {
+        font-size: 28px;
+    }
+
+    .titulos-secao5 p {
+        font-size: 15px;
+    }
+
+    .grid-secao5 {
+        margin-top: 40px;
+    }
+
+    #btn1-secao5 {
+        width: min(360px, 100%);
+        margin-top: 50px;
+        margin-bottom: 50px;
+        font-size: 16px;
+    }
+
+    /* Footer */
+
+    .footer-conteudo {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-logo img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .footer-links {
+        width: 100%;
+    }
+
+    .footer-links h3 {
+        width: 100%;
+        padding-right: 0;
+        font-size: 20px;
+    }
+}
+
+
+/* ---- Planos em 1 coluna ---- */
+
+@media (max-width: 700px) {
+
+    .grid-secao3,
+    .grid-secao2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ---- Celulares pequenos: cards da seção 5 um embaixo do outro, com setas para baixo ---- */
+
+@media (max-width: 520px) {
+
+    .grid-secao5 {
+        grid-template-columns: 200px;
+        gap: 10px;
+    }
+
+    .grid-secao5 > img {
+        display: block;
+        width: 32px;
+        height: auto;
+        margin: 0 auto;
+        transform: rotate(90deg);
+    }
+
+    .titulo-secao2 h1,
+    .titulo-secao3 h1,
+    .titulos-secao4 h1,
+    .titulos-secao5 h1 {
+        font-size: 24px;
+    }
+
+    .titulo-card {
+        font-size: 28px;
+    }
+}

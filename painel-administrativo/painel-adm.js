@@ -9,11 +9,12 @@
    ========================================================== */
 
 const CHAVE = "ctfithouse_aulas";
-const PROFESSORES = ["Iago", "Matheus", "Julio"];
+const CHAVE_PROF = "ctfithouse_professores";
 const MAX_VAGAS = 5;        // RN12
 const MAX_AULAS_DIA = 2;    // RN14
 
 let aulas = carregarAulas();
+let professores = carregarProfessores();
 
 
 /* ---------- Dados ---------- */
@@ -164,6 +165,8 @@ function renderTudo() {
     renderResumo();
     renderProximas();
     renderAulas();
+    renderInscricoes();
+    renderProfessores();
 }
 
 
@@ -176,10 +179,17 @@ const TEXTOS = {
     "professores": ["Professores", "Gerencie as contas dos professores."]
 };
 
+let vistaAtual = "visao-geral";
+
 function mostrarVista(nome) {
-    const existe = document.querySelector("#vista-" + nome);
+    vistaAtual = nome;
     document.querySelectorAll(".vista").forEach(function (v) { v.hidden = true; });
-    (existe || document.querySelector("#vista-em-breve")).hidden = false;
+    document.querySelector("#vista-" + nome).hidden = false;
+
+    // o botão do topo muda conforme a tela
+    const botaoTopo = document.querySelector("#btn-nova-aula");
+    botaoTopo.hidden = nome === "inscricoes";
+    botaoTopo.textContent = nome === "professores" ? "+ Novo professor" : "+ Nova aula";
 
     document.querySelectorAll(".menu-item").forEach(function (item) {
         item.classList.toggle("ativo", item.dataset.vista === nome);
@@ -217,7 +227,10 @@ const formAula = document.querySelector("#form-aula");
 const erroAula = document.querySelector("#erro-aula");
 
 function preencherProfessores() {
-    const opcoes = PROFESSORES.map(function (p) { return '<option value="' + esc(p) + '">' + esc(p) + "</option>"; }).join("");
+    const opcoes = professores
+        .filter(function (p) { return p.ativo; })
+        .map(function (p) { return '<option value="' + esc(p.nome) + '">' + esc(p.nome) + "</option>"; })
+        .join("");
     document.querySelector("#aula-prof1").innerHTML = opcoes;
     document.querySelector("#aula-prof2").innerHTML = '<option value="">Nenhum</option>' + opcoes;
 }
@@ -243,6 +256,11 @@ function validarAula(nova) {
 }
 
 document.querySelector("#btn-nova-aula").addEventListener("click", function () {
+    if (vistaAtual === "professores") {
+        abrirProfessor(null);
+        return;
+    }
+    preencherProfessores();
     formAula.reset();
     erroAula.textContent = "";
     modalAula.showModal();
@@ -370,6 +388,258 @@ document.addEventListener("click", function (evento) {
 
     if (botao.dataset.ver) abrirAlunos(Number(botao.dataset.ver));
     if (botao.dataset.cancelar) cancelarAula(Number(botao.dataset.cancelar));
+});
+
+
+/* ---------- Inscrições (RF27, RF28, RF34) ---------- */
+
+function renderInscricoes() {
+    const corpo = document.querySelector("#tabela-inscricoes");
+    const busca = document.querySelector("#filtro-busca").value.trim().toLowerCase();
+    const filtro = document.querySelector("#filtro-status").value;
+    let html = "";
+
+    ordenadas(aulas).forEach(function (a) {
+        a.inscritos.forEach(function (i, indice) {
+            const estado = i.presenca || i.status;
+            if (filtro && estado !== filtro) return;
+            if (busca && i.nome.toLowerCase().indexOf(busca) === -1) return;
+
+            const dados = ' data-aula="' + a.id + '" data-indice="' + indice + '"';
+            let acoes = '<span class="etiqueta">—</span>';
+
+            if (a.status === "agendada" && i.status !== "cancelada" && !i.presenca) {
+                acoes = aulaIniciada(a)
+                    ? '<button class="btn-mini" data-acao="presente"' + dados + '>Presente</button>' +
+                      '<button class="btn-mini perigo" data-acao="ausente"' + dados + '>Ausente</button>'
+                    : '<button class="btn-mini perigo" data-acao="cancelar"' + dados + '>Cancelar inscrição</button>';
+            }
+
+            html += "<tr><td>" + esc(i.nome) + "</td>" +
+                "<td>" + formatarData(a.data) + " • " + a.inicio + "</td>" +
+                "<td>" + esc(a.professores.join(" / ")) + "</td>" +
+                '<td><span class="selo ' + estado + '">' + i.status + (i.presenca ? " · " + i.presenca : "") + "</span></td>" +
+                '<td class="centro"><div class="acoes">' + acoes + "</div></td></tr>";
+        });
+    });
+
+    corpo.innerHTML = html || '<tr><td colspan="5" class="vazio">Nenhuma inscrição encontrada.</td></tr>';
+}
+
+document.querySelector("#filtro-busca").addEventListener("input", renderInscricoes);
+document.querySelector("#filtro-status").addEventListener("change", renderInscricoes);
+
+document.querySelector("#tabela-inscricoes").addEventListener("click", function (evento) {
+    const botao = evento.target.closest("button");
+    if (!botao || !botao.dataset.acao) return;
+
+    const aula = aulas.find(function (a) { return a.id === Number(botao.dataset.aula); });
+    const inscricao = aula && aula.inscritos[botao.dataset.indice];
+    if (!inscricao) return;
+
+    if (botao.dataset.acao === "cancelar") {
+        inscricao.status = "cancelada";
+    } else {
+        inscricao.presenca = botao.dataset.acao;   // presente ou ausente
+    }
+
+    salvarAulas();
+    renderTudo();
+});
+
+
+/* ---------- Professores (RF10, RN03, RN04, RN08) ---------- */
+
+/* ATENÇÃO: a senha NÃO é guardada aqui. No back-end ela deve ser
+   enviada ao PHP e salva com hash (password_hash), conforme RNF05. */
+
+function professoresIniciais() {
+    return [
+        { id: 1, nome: "Iago", email: "iago@ctfithouse.com.br", cpf: "52998224725", ativo: true },
+        { id: 2, nome: "Matheus", email: "matheus@ctfithouse.com.br", cpf: "11144477735", ativo: true },
+        { id: 3, nome: "Julio", email: "julio@ctfithouse.com.br", cpf: "12345678909", ativo: true }
+    ];
+}
+
+function carregarProfessores() {
+    try {
+        const salvo = localStorage.getItem(CHAVE_PROF);
+        if (salvo) return JSON.parse(salvo);
+    } catch (erro) { /* usa os dados iniciais */ }
+    return professoresIniciais();
+}
+
+function salvarProfessores() {
+    try {
+        localStorage.setItem(CHAVE_PROF, JSON.stringify(professores));
+    } catch (erro) { /* segue só em memória */ }
+}
+
+function ehHost() {
+    return seletorPerfil.value === "host";
+}
+
+function cpfValido(cpf) {
+    if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
+
+    for (let t = 9; t < 11; t++) {
+        let soma = 0;
+        for (let i = 0; i < t; i++) soma += Number(cpf[i]) * (t + 1 - i);
+        if (((soma * 10) % 11) % 10 !== Number(cpf[t])) return false;
+    }
+    return true;
+}
+
+function formatarCpf(cpf) {
+    return cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
+}
+
+// RNF06: na tabela o CPF aparece parcialmente oculto
+function cpfOculto(cpf) {
+    return "•••." + cpf.slice(3, 6) + "." + cpf.slice(6, 9) + "-••";
+}
+
+function aulasFuturasDe(nome) {
+    return aulas.filter(function (a) {
+        return a.status === "agendada" && a.professores.indexOf(nome) !== -1 &&
+            new Date(a.data + "T" + a.inicio) > new Date();
+    }).length;
+}
+
+function renderProfessores() {
+    const corpo = document.querySelector("#tabela-professores");
+
+    corpo.innerHTML = professores.map(function (p) {
+        return '<tr class="' + (p.ativo ? "" : "inativo") + '">' +
+            "<td>" + esc(p.nome) + "</td>" +
+            "<td>" + esc(p.email) + "</td>" +
+            "<td>" + cpfOculto(p.cpf) + "</td>" +
+            '<td><span class="selo ' + (p.ativo ? "confirmada" : "cancelada") + '">' + (p.ativo ? "ativo" : "inativo") + "</span></td>" +
+            "<td>" + aulasFuturasDe(p.nome) + "</td>" +
+            '<td class="centro"><div class="acoes">' +
+            '<button class="btn-mini" data-prof-editar="' + p.id + '">Editar</button>' +
+            '<button class="btn-mini ' + (p.ativo ? "perigo" : "") + '" data-prof-status="' + p.id + '">' +
+            (p.ativo ? "Desativar" : "Reativar") + "</button>" +
+            "</div></td></tr>";
+    }).join("");
+}
+
+const modalProfessor = document.querySelector("#modal-professor");
+const formProfessor = document.querySelector("#form-professor");
+const erroProfessor = document.querySelector("#erro-professor");
+const campoCpfProf = document.querySelector("#prof-cpf");
+let profEditando = null;
+
+function abrirProfessor(id) {
+    if (!ehHost()) return;
+
+    const prof = professores.find(function (p) { return p.id === id; });
+    profEditando = prof ? prof.id : null;
+
+    formProfessor.reset();
+    erroProfessor.textContent = "";
+    document.querySelector("#titulo-professor").textContent = prof ? "Editar professor" : "Novo professor";
+    document.querySelector("#rotulo-senha").textContent = prof ? "Nova senha (deixe em branco para manter)" : "Senha";
+
+    if (prof) {
+        document.querySelector("#prof-nome").value = prof.nome;
+        campoCpfProf.value = formatarCpf(prof.cpf);
+        document.querySelector("#prof-email").value = prof.email;
+    }
+
+    campoCpfProf.readOnly = Boolean(prof);   // CPF não pode ser alterado (RN25)
+    modalProfessor.showModal();
+}
+
+campoCpfProf.addEventListener("input", function () {
+    const n = campoCpfProf.value.replace(/\D/g, "").slice(0, 11);
+    campoCpfProf.value = n
+        .replace(/^(\d{3})(\d)/, "$1.$2")
+        .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
+        .replace(/\.(\d{3})(\d)/, ".$1-$2");
+});
+
+document.querySelector("#cancelar-professor").addEventListener("click", function () { modalProfessor.close(); });
+
+formProfessor.addEventListener("submit", function (evento) {
+    evento.preventDefault();
+
+    if (!ehHost()) {
+        erroProfessor.textContent = "Somente o Host pode gerenciar professores.";
+        return;
+    }
+
+    const nome = document.querySelector("#prof-nome").value.trim();
+    const email = document.querySelector("#prof-email").value.trim().toLowerCase();
+    const cpf = campoCpfProf.value.replace(/\D/g, "");
+    const senha = document.querySelector("#prof-senha").value;
+    const outros = professores.filter(function (p) { return p.id !== profEditando; });
+
+    let erro = "";
+    if (nome.length < 2) erro = "Informe o nome.";
+    else if (outros.some(function (p) { return p.nome.toLowerCase() === nome.toLowerCase(); })) erro = "Já existe um professor com esse nome.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) erro = "Informe um e-mail válido.";
+    else if (outros.some(function (p) { return p.email === email; })) erro = "Esse e-mail já está cadastrado.";
+    else if (!cpfValido(cpf)) erro = "CPF inválido.";
+    else if (outros.some(function (p) { return p.cpf === cpf; })) erro = "Já existe um professor com esse CPF.";   // RN01
+    else if ((profEditando === null || senha) && senha.length < 6) erro = "A senha deve ter pelo menos 6 caracteres.";
+
+    if (erro) {
+        erroProfessor.textContent = erro;
+        return;
+    }
+
+    if (profEditando === null) {
+        professores.push({ id: Date.now(), nome: nome, email: email, cpf: cpf, ativo: true });
+        avisar("Professor cadastrado.");
+    } else {
+        const prof = professores.find(function (p) { return p.id === profEditando; });
+
+        // as aulas guardam o nome do professor, então acompanham a troca de nome
+        if (prof.nome !== nome) {
+            aulas.forEach(function (a) {
+                a.professores = a.professores.map(function (n) { return n === prof.nome ? nome : n; });
+            });
+            salvarAulas();
+        }
+
+        prof.nome = nome;
+        prof.email = email;
+        avisar("Professor atualizado.");
+    }
+
+    salvarProfessores();
+    renderTudo();
+    modalProfessor.close();
+});
+
+document.querySelector("#tabela-professores").addEventListener("click", function (evento) {
+    const botao = evento.target.closest("button");
+    if (!botao || !ehHost()) return;
+
+    if (botao.dataset.profEditar) {
+        abrirProfessor(Number(botao.dataset.profEditar));
+        return;
+    }
+
+    if (botao.dataset.profStatus) {
+        const prof = professores.find(function (p) { return p.id === Number(botao.dataset.profStatus); });
+        if (!prof) return;
+
+        if (prof.ativo) {
+            const futuras = aulasFuturasDe(prof.nome);
+            if (futuras > 0) {
+                avisar(prof.nome + " tem " + futuras + " aula(s) futura(s). Cancele-as antes de desativar.");
+                return;
+            }
+            if (!confirm("Desativar a conta de " + prof.nome + "?")) return;
+        }
+
+        prof.ativo = !prof.ativo;
+        salvarProfessores();
+        renderTudo();
+        avisar(prof.ativo ? "Conta reativada." : "Conta desativada.");
+    }
 });
 
 
