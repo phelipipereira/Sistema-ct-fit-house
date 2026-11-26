@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="painel-adm.css">
+    <script src="painel-adm.js" defer></script>
+</head>
+<body>
+
+    <aside class="menu-lateral">
+        <div class="menu-topo">
+            <img src="/Assets/img/Logo1.png" alt="CT FitHouse Logo" width="109" height="36">
+            <span class="menu-rotulo">ÁREA RESTRITA</span>
+        </div>
+
+        <nav class="menu-itens">
+            <button type="button" class="menu-item ativo" data-vista="visao-geral">Visão geral</button>
+            <button type="button" class="menu-item" data-vista="aulas">Aulas</button>
+            <button type="button" class="menu-item" data-vista="inscricoes">Inscrições</button>
+            <button type="button" class="menu-item" data-vista="professores" data-host>Professores (Host)</button>
+        </nav>
+
+        <div class="menu-rodape">
+            <label for="perfil">Perfil (teste)</label>
+            <select id="perfil">
+                <option value="host">Host</option>
+                <option value="professor">Professor</option>
+            </select>
+            <span>CT Fit House 2026</span>
+        </div>
+    </aside>
+
+    <main class="painel">
+
+        <header class="painel-topo">
+            <div>
+                <span class="rotulo">PAINEL ADMINISTRATIVO</span>
+                <h1 id="titulo-vista">Gerenciamento de aulas</h1>
+                <p id="subtitulo-vista">Controle das sessões, inscrições e professores responsáveis.</p>
+            </div>
+            <button type="button" class="btn-principal" id="btn-nova-aula">+ Nova aula</button>
+        </header>
+
+        <!-- Visão geral -->
+        <section class="vista" id="vista-visao-geral">
+
+            <div class="cards-resumo">
+                <div class="card-resumo">
+                    <span>Aulas agendadas</span>
+                    <strong id="resumo-aulas">0</strong>
+                    <small>Aulas experimentais futuras</small>
+                </div>
+                <div class="card-resumo">
+                    <span>Inscritos ativos</span>
+                    <strong id="resumo-inscritos">0</strong>
+                    <small>Somando todas as aulas</small>
+                </div>
+                <div class="card-resumo">
+                    <span>Confirmações</span>
+                    <strong id="resumo-confirmacoes">0</strong>
+                    <small>Presenças já confirmadas</small>
+                </div>
+            </div>
+
+            <h2 class="titulo-tabela">Próximas sessões</h2>
+            <div class="tabela-caixa">
+                <table>
+                    <thead>
+                        <tr><th>DATA / HORÁRIO</th><th>PROFESSOR</th><th>INSCRITOS</th><th class="centro">GERENCIAR</th></tr>
+                    </thead>
+                    <tbody id="tabela-proximas"></tbody>
+                </table>
+            </div>
+
+            <div class="aviso">
+                <span class="rotulo">PROFESSOR • HOST</span>
+                <p>Criar, cancelar aulas, acompanhar inscrições e registrar presença.</p>
+                <small>Somente host: gerenciar contas de professores associados.</small>
+            </div>
+        </section>
+
+        <!-- Aulas -->
+        <section class="vista" id="vista-aulas" hidden>
+            <div class="tabela-caixa">
+                <table>
+                    <thead>
+                        <tr><th>DATA / HORÁRIO</th><th>PROFESSOR</th><th>INSCRITOS</th><th class="centro">GERENCIAR</th></tr>
+                    </thead>
+                    <tbody id="tabela-aulas"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Telas ainda sem design -->
+        <section class="vista" id="vista-em-breve" hidden>
+            <div class="aviso"><p>Esta tela ainda será construída.</p></div>
+        </section>
+
+    </main>
+
+    <!-- Modal: nova aula -->
+    <dialog id="modal-aula">
+        <form id="form-aula">
+            <h2>Nova aula experimental</h2>
+
+            <label for="aula-data">Data</label>
+            <input type="date" id="aula-data" required>
+
+            <div class="linha-campos">
+                <div>
+                    <label for="aula-inicio">Início</label>
+                    <input type="time" id="aula-inicio" required>
+                </div>
+                <div>
+                    <label for="aula-fim">Término</label>
+                    <input type="time" id="aula-fim" required>
+                </div>
+            </div>
+
+            <label for="aula-prof1">Professor responsável</label>
+            <select id="aula-prof1" required></select>
+
+            <label for="aula-prof2">Segundo professor (opcional)</label>
+            <select id="aula-prof2"></select>
+
+            <p class="erro-form" id="erro-aula" role="alert"></p>
+
+            <div class="modal-botoes">
+                <button type="button" class="btn-secundario" id="cancelar-aula">Fechar</button>
+                <button type="submit" class="btn-principal">Criar aula</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Modal: alunos da aula -->
+    <dialog id="modal-alunos">
+        <div class="conteudo-modal">
+            <h2 id="alunos-titulo">Inscritos</h2>
+            <ul id="alunos-lista" class="lista-alunos"></ul>
+            <div class="modal-botoes">
+                <button type="button" class="btn-secundario" id="fechar-alunos">Fechar</button>
+            </div>
+        </div>
+    </dialog>
+
+    <div id="aviso-toast" class="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>
