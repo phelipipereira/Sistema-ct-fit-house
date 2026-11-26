@@ -584,13 +584,20 @@ dd {
     margin-top: 5px;
 }
 
-@media (max-width: 700px) {
+
+/* ---- Responsividade ---- */
+
+/* Tablet e celular: o menu lateral vira barra no topo */
+
+@media (max-width: 820px) {
+
     .painel-lateral {
         position: sticky;
         inset: 0 0 auto;
         width: 100%;
         gap: 6px;
         padding: 8px 12px;
+        overflow: visible;
         border-bottom: 1px solid var(--linha);
         background: var(--fundo-lateral);
     }
@@ -600,7 +607,7 @@ dd {
     }
 
     .painel-marca img {
-        width: 80px;
+        width: 72px;
     }
 
     .painel-marca p,
@@ -610,17 +617,23 @@ dd {
 
     .painel-navegacao {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 4px;
     }
 
     .painel-tab {
-        padding-inline: 5px;
+        display: flex;
+        min-height: 40px;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 4px;
         font-size: 12px;
+        line-height: 1.2;
         text-align: center;
     }
 
     .painel {
         margin-inline-start: 0;
-        padding: 18px 16px 24px;
+        padding: 18px 16px 28px;
     }
 
     .aba-cabecalho {
@@ -629,16 +642,71 @@ dd {
         padding-inline-end: 66px;
     }
 
-    .painel-sair {
-        min-width: 56px;
-    }
-
     .cartao {
         padding-inline: 14px;
     }
+
+    /* botões mais fáceis de tocar */
+
+    .botao {
+        min-height: 44px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .painel-sair {
+        min-width: 56px;
+        min-height: 36px;
+    }
+
+    #agendar-aula {
+        justify-self: stretch;
+    }
+
+    .detalhes-cabecalho {
+        flex-wrap: wrap;
+    }
+
+    dd {
+        overflow-wrap: anywhere;
+    }
+
+    /* campos: 16px evita o zoom automático do iPhone ao tocar no campo */
+
+    .perfil-campo input {
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    .perfil-campo input[type="date"] {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .modal {
+        overflow-y: auto;
+    }
+
+    .modal h2 {
+        font-size: 20px;
+    }
 }
 
+
+/* Formulário do perfil em 1 coluna */
+
+@media (max-width: 560px) {
+
+    .perfil-campos {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+
+/* Celulares */
+
 @media (max-width: 460px) {
+
     .linha-aula {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
@@ -648,23 +716,51 @@ dd {
         justify-self: start;
     }
 
-    .perfil-campos {
-        grid-template-columns: minmax(0, 1fr);
+    .linha-aula > button:last-child {
+        justify-self: stretch;
     }
 
     .perfil-identidade {
         flex-wrap: wrap;
     }
 
+    /* botões empilhados, com "Salvar" em cima */
+
+    .grupo-acoes > .botao {
+        flex: 1 1 100%;
+    }
+
     .perfil-acoes {
-        justify-content: flex-start;
+        flex-direction: column-reverse;
+        align-items: stretch;
     }
 
     .modal {
         padding: 16px;
     }
 
+    .icone-sucesso {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+    }
+
     .resumo-grade > div {
         display: block;
+    }
+}
+
+
+/* Celulares bem pequenos */
+
+@media (max-width: 360px) {
+
+    .painel-tab {
+        font-size: 11px;
+    }
+
+    .detalhes-grade {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
     }
 }

@@ -1,13 +1,3 @@
-/* ==========================================================
-   Painel administrativo de aulas
-
-   Os dados ficam em "aulas" e são salvos no localStorage só para
-   teste. Quando o back-end (PHP + banco) estiver pronto, troque:
-     - carregarAulas()  -> fetch("listar-aulas.php")
-     - salvarAulas()    -> fetch(...) de criar/cancelar/atualizar
-   O resto (telas e regras de exibição) continua igual.
-   ========================================================== */
-
 const CHAVE = "ctfithouse_aulas";
 const CHAVE_PROF = "ctfithouse_professores";
 const MAX_VAGAS = 5;        // RN12
@@ -129,9 +119,9 @@ function renderProximas() {
     corpo.innerHTML = proximas.map(function (a) {
         const lotada = inscritosAtivos(a).length >= MAX_VAGAS;
         return "<tr>" +
-            "<td>" + formatarData(a.data) + " • " + a.inicio + "</td>" +
-            "<td>" + esc(a.professores.join(" / ")) + "</td>" +
-            "<td>" + celulaInscritos(a) + "</td>" +
+            '<td data-label="Data / horário">' + formatarData(a.data) + " • " + a.inicio + "</td>" +
+            '<td data-label="Professor">' + esc(a.professores.join(" / ")) + "</td>" +
+            '<td data-label="Inscritos">' + celulaInscritos(a) + "</td>" +
             '<td class="centro"><button class="btn-mini' + (lotada ? " lotada" : "") + '" data-ver="' + a.id + '">' +
             (lotada ? "Lotada" : "Ver alunos") + "</button></td>" +
             "</tr>";
@@ -149,9 +139,9 @@ function renderAulas() {
     corpo.innerHTML = ordenadas(aulas).map(function (a) {
         const cancelada = a.status === "cancelada";
         return '<tr class="' + (cancelada ? "cancelada" : "") + '">' +
-            "<td>" + formatarData(a.data) + " • " + a.inicio + "</td>" +
-            "<td>" + esc(a.professores.join(" / ")) + "</td>" +
-            "<td>" + celulaInscritos(a) + "</td>" +
+            '<td data-label="Data / horário">' + formatarData(a.data) + " • " + a.inicio + "</td>" +
+            '<td data-label="Professor">' + esc(a.professores.join(" / ")) + "</td>" +
+            '<td data-label="Inscritos">' + celulaInscritos(a) + "</td>" +
             '<td class="centro"><div class="acoes">' +
             (cancelada
                 ? '<span class="etiqueta">Cancelada</span>'
@@ -415,10 +405,10 @@ function renderInscricoes() {
                     : '<button class="btn-mini perigo" data-acao="cancelar"' + dados + '>Cancelar inscrição</button>';
             }
 
-            html += "<tr><td>" + esc(i.nome) + "</td>" +
-                "<td>" + formatarData(a.data) + " • " + a.inicio + "</td>" +
-                "<td>" + esc(a.professores.join(" / ")) + "</td>" +
-                '<td><span class="selo ' + estado + '">' + i.status + (i.presenca ? " · " + i.presenca : "") + "</span></td>" +
+            html += '<tr><td data-label="Aluno">' + esc(i.nome) + "</td>" +
+                '<td data-label="Data / horário">' + formatarData(a.data) + " • " + a.inicio + "</td>" +
+                '<td data-label="Professor">' + esc(a.professores.join(" / ")) + "</td>" +
+                '<td data-label="Status"><span class="selo ' + estado + '">' + i.status + (i.presenca ? " · " + i.presenca : "") + "</span></td>" +
                 '<td class="centro"><div class="acoes">' + acoes + "</div></td></tr>";
         });
     });
@@ -511,11 +501,11 @@ function renderProfessores() {
 
     corpo.innerHTML = professores.map(function (p) {
         return '<tr class="' + (p.ativo ? "" : "inativo") + '">' +
-            "<td>" + esc(p.nome) + "</td>" +
-            "<td>" + esc(p.email) + "</td>" +
-            "<td>" + cpfOculto(p.cpf) + "</td>" +
-            '<td><span class="selo ' + (p.ativo ? "confirmada" : "cancelada") + '">' + (p.ativo ? "ativo" : "inativo") + "</span></td>" +
-            "<td>" + aulasFuturasDe(p.nome) + "</td>" +
+            '<td data-label="Nome">' + esc(p.nome) + "</td>" +
+            '<td data-label="E-mail">' + esc(p.email) + "</td>" +
+            '<td data-label="CPF">' + cpfOculto(p.cpf) + "</td>" +
+            '<td data-label="Status"><span class="selo ' + (p.ativo ? "confirmada" : "cancelada") + '">' + (p.ativo ? "ativo" : "inativo") + "</span></td>" +
+            '<td data-label="Aulas futuras">' + aulasFuturasDe(p.nome) + "</td>" +
             '<td class="centro"><div class="acoes">' +
             '<button class="btn-mini" data-prof-editar="' + p.id + '">Editar</button>' +
             '<button class="btn-mini ' + (p.ativo ? "perigo" : "") + '" data-prof-status="' + p.id + '">' +
