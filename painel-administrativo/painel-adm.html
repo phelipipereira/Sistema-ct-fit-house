@@ -8,7 +8,6 @@
     <script src="painel-adm.js" defer></script>
 </head>
 <body>
-
     <aside class="menu-lateral">
         <div class="menu-topo">
             <img src="/Assets/img/Logo1.png" alt="CT FitHouse Logo" width="109" height="36">
@@ -19,20 +18,17 @@
             <button type="button" class="menu-item ativo" data-vista="visao-geral">Visão geral</button>
             <button type="button" class="menu-item" data-vista="aulas">Aulas</button>
             <button type="button" class="menu-item" data-vista="inscricoes">Inscrições</button>
-            <button type="button" class="menu-item" data-vista="professores" data-host>Professores (Host)</button>
+            <button type="button" class="menu-item" data-vista="professores" data-host hidden>Professores (Host)</button>
         </nav>
 
         <div class="menu-rodape">
-            <label for="perfil">Perfil (teste)</label>
-            <select id="perfil">
-                <option value="host">Host</option>
-                <option value="professor">Professor</option>
-            </select>
+            <span id="perfil-atual">Verificando acesso…</span>
             <span>CT Fit House 2026</span>
         </div>
     </aside>
 
     <main class="painel">
+        <p id="erro-painel" role="alert"></p>
 
         <header class="painel-topo">
             <div>
@@ -40,12 +36,10 @@
                 <h1 id="titulo-vista">Gerenciamento de aulas</h1>
                 <p id="subtitulo-vista">Controle das sessões, inscrições e professores responsáveis.</p>
             </div>
-            <button type="button" class="btn-principal" id="btn-nova-aula">+ Nova aula</button>
+            <button type="button" class="btn-principal" id="btn-nova-aula" data-host hidden>+ Nova aula</button>
         </header>
 
-        <!-- Visão geral -->
         <section class="vista" id="vista-visao-geral">
-
             <div class="cards-resumo">
                 <div class="card-resumo">
                     <span>Aulas agendadas</span>
@@ -81,7 +75,6 @@
             </div>
         </section>
 
-        <!-- Aulas -->
         <section class="vista" id="vista-aulas" hidden>
             <div class="tabela-caixa">
                 <table>
@@ -93,7 +86,6 @@
             </div>
         </section>
 
-        <!-- Inscrições -->
         <section class="vista" id="vista-inscricoes" hidden>
             <div class="filtros">
                 <input type="search" id="filtro-busca" placeholder="Buscar aluno" aria-label="Buscar aluno">
@@ -116,7 +108,6 @@
             </div>
         </section>
 
-        <!-- Professores (somente Host) -->
         <section class="vista" id="vista-professores" hidden>
             <div class="tabela-caixa">
                 <table>
@@ -132,10 +123,8 @@
                 <small>Professor com aulas futuras só pode ser desativado depois que essas aulas forem canceladas.</small>
             </div>
         </section>
-
     </main>
 
-    <!-- Modal: nova aula -->
     <dialog id="modal-aula">
         <form id="form-aula">
             <h2>Nova aula experimental</h2>
@@ -169,7 +158,6 @@
         </form>
     </dialog>
 
-    <!-- Modal: alunos da aula -->
     <dialog id="modal-alunos">
         <div class="conteudo-modal">
             <h2 id="alunos-titulo">Inscritos</h2>
@@ -180,7 +168,6 @@
         </div>
     </dialog>
 
-    <!-- Modal: professor -->
     <dialog id="modal-professor">
         <form id="form-professor">
             <h2 id="titulo-professor">Novo professor</h2>
@@ -192,7 +179,10 @@
             <input type="text" id="prof-cpf" inputmode="numeric" maxlength="14" required>
 
             <label for="prof-email">E-mail</label>
-            <input type="email" id="prof-email" required>
+            <input type="email" id="prof-email" maxlength="100" required>
+
+            <label for="prof-nascimento">Data de nascimento</label>
+            <input type="date" id="prof-nascimento" required>
 
             <label for="prof-senha" id="rotulo-senha">Senha</label>
             <input type="password" id="prof-senha" autocomplete="new-password">
@@ -207,6 +197,5 @@
     </dialog>
 
     <div id="aviso-toast" class="toast" role="status" aria-live="polite"></div>
-
 </body>
 </html>
