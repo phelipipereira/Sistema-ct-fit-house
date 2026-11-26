@@ -23,3 +23,14 @@ if (header && hero) {
     window.addEventListener("resize", atualizarHeader);
 
 }
+
+//Animação menu header
+
+const linksDoMenu = document.querySelectorAll("#menu .menu-principal .nav-link");
+
+linksDoMenu.forEach((link) => {
+    link.addEventListener("click", () => {
+        linksDoMenu.forEach((item) => item.classList.remove("active"));
+        link.classList.add("active");
+    });
+});

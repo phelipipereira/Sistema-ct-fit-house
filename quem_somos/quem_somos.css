@@ -89,6 +89,26 @@ body {
     color: #01A94A;
 }
 
+#menu .menu-principal .nav-link.active {
+    color: #01A94A;
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    #menu .menu-principal .nav-link.active {
+        animation: aparecer-sublinhado 0.3s ease-out;
+    }
+}
+
+@keyframes aparecer-sublinhado {
+    from {
+        text-decoration-color: transparent;
+    }
+}
+
 
 /* Hero */
 
