@@ -145,9 +145,15 @@ function escolherHorario(aula) {
     modalConfirmar.showModal();
 }
 
-function confirmarInscricao() {
+
+
+async function confirmarInscricao() {
     const aula = horarioEscolhido;
     if (inscricaoAtiva || !modalConfirmar.open || !aula || aula.vagas_disponiveis <= 0) {
+        return;
+    }
+    
+    if (!await alterarInscricao("inscrever", aula.id_aula, elemento("confirmar-inscricao"))) {
         return;
     }
 
@@ -164,15 +170,54 @@ function confirmarInscricao() {
     modalSucesso.showModal();
 }
 
-function cancelarInscricao() {
+async function alterarInscricao(acao, idAula, botao) {
+    if (botao.disabled) return false;
+    botao.disabled = true;
+
+    try {
+        const resposta = await fetch("./painel-lead.php", {
+            method: "POST",
+            headers: { "X-Painel-Lead": "1" },
+            body: new URLSearchParams({ acao, id_aula: String(idAula) })
+        });
+
+        const texto = await resposta.text();
+        let dados;
+
+        try {
+            dados = JSON.parse(texto);
+        } catch {
+            alert(`O servidor respondeu HTTP ${resposta.status} sem JSON. Recarregue o painel antes de repetir.`);
+            return false;
+        }
+
+        if (!resposta.ok || !dados.ok) {
+            alert(dados.erro || `Não foi possível alterar a inscrição (HTTP ${resposta.status}).`);
+            return false;
+        }
+
+        return true;
+    } catch {
+        alert("Falha de conexão. Recarregue o painel antes de repetir.");
+        return false;
+    } finally {
+        botao.disabled = false;
+    }
+}
+
+async function cancelarInscricao() {
     if (!inscricaoAtiva) {
+        return;
+    }
+
+    if (!await alterarInscricao("cancelar", inscricaoAtiva.aula.id_aula, elemento("cancelar-inscricao"))) {
         return;
     }
 
     inscricaoAtiva = null;
     horariosVisiveis = false;
     renderizarInscricoes();
-    renderizarAulas();
+    await iniciarPainel();
     elemento("mensagem-inscricao").textContent = "Inscrição cancelada.";
     botaoAgendar.focus();
 }
@@ -280,7 +325,7 @@ async function iniciarPainel() {
     atualizarOrientacao();
 
     try {
-        const resposta = await fetch("painel-lead.php");
+        const resposta = await fetch("./painel-lead.php");
         const dados = await resposta.json();
 
         if (!resposta.ok) {
